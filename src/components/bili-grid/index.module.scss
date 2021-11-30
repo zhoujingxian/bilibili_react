@@ -1,0 +1,30 @@
+.videoBox {
+  padding:0 0.05rem;
+  .videoHeader {
+    padding:0.05rem 0.1rem;
+    display: flex;
+    justify-content: space-between;
+    .bt {
+      font-size: 0.15rem;
+    }
+
+    .videoMore {
+      font-size: 0.14rem;
+      display: flex;
+      align-items: center;
+      .I2{
+        font-size: 0.12rem;
+      }
+      .I1{
+        margin-right:5px;
+        font-size: 14px;
+      }
+    }
+  }
+  .cardBox{
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+  }
+
+}

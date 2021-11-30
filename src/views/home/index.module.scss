@@ -1,0 +1,78 @@
+.tabBox {
+  display: flex;
+  align-items: center;
+}
+.homeHeader {
+  position: fixed;
+  top: 0.43rem;
+  width: 100%;
+  background: #fff;
+  padding-right: 0.23rem;
+  z-index: 2;
+
+  .tabBody {
+    height: 0.4rem;
+
+    div {
+      height: 100%;
+    }
+
+    a {
+      font-size: 0.14rem;
+    }
+  }
+}
+
+.popupI {
+  background: #fff;
+  position: fixed;
+  top: 0.52rem;
+  right: 0;
+  z-index: 2;
+  font-weight: bold;
+  width: 0.3rem;
+  //height: 0.4rem;
+  color: #aaa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    font-size: 0.14rem;
+
+  }
+}
+
+.popup {
+  z-index: 3;
+
+  .popupMask {
+    margin-top: 0.44rem;
+  }
+
+  .popupBody {
+    padding:0.1rem 0.2rem;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    top: 0.44rem;
+  }
+
+  .drawerBody {
+    font-size: 16px;
+    padding:0.08rem;
+  }
+}
+
+body :global .adm-tabs-tab-active a {
+  color: #fb7299;
+
+}
+
+:root:root {
+  --adm-color-primary: #fb7299;
+}
+
+
+
+

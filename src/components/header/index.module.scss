@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.12rem 0 0.18rem;
+  width:100%;
+  height: 0.44rem;
+  position: fixed;
+  top:0;
+  z-index: 10;
+  background: #fff;
+  .headerLeft {
+    .logo {
+      color: #fb7299;
+      font-size: 28px;
+      font-weight: normal;
+    }
+
+  }
+
+  .headerRight {
+    width: 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .headerSearch {
+      font-size: 22px;
+      color: #cfcfcf;
+    }
+
+    .headerBtn {
+      --background-color: #fb7299;
+      --text-color: #fff;
+    }
+
+  }
+
+}

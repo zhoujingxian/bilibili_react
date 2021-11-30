@@ -1,0 +1,44 @@
+.videoBox {
+  width: 1.82rem;
+  padding:0.08rem 0.05rem;
+
+  .imgBox {
+    position: relative;
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 0.97rem;
+    }
+
+    .videoTitle {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 0.1rem;
+      background: linear-gradient(0deg, rgba(0, 0, 0, .85), transparent);
+
+      span {
+        color: #fff;
+        font-size: 0.12rem;
+
+        i {
+          font-size: 0.12rem;
+          margin-right: 0.04rem;
+
+        }
+      }
+    }
+  }
+
+  .videoP {
+    margin-top:0.06rem;
+    font-size: 0.12rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:2;
+    overflow: hidden;
+  }
+}

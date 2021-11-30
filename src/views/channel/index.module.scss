@@ -1,0 +1,23 @@
+.chanTabs {
+  position: fixed;
+  top: 0.84rem;
+  width: 100%;
+  background: #fff;
+  z-index: 3;
+
+  .chanBody {
+    height: 0.4rem;
+
+    div {
+      height: 100%;
+    }
+  }
+
+  a {
+    font-size: 0.14rem;
+  }
+}
+
+.recHeader{
+  margin-top:132px;
+}

@@ -1,0 +1,29 @@
+.dynamic{
+  background: #f4f4f4;
+  padding: 0 0.12rem 0.14rem;
+  .dynamicHeader{
+    color:#5090cc;
+    font-size: 0.15rem;
+    padding:0.1rem 0 0.08rem
+  }
+  .dynamicText{
+    font-size: 16px;
+    color:#757575;
+    line-height: 25px;
+    display:-webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:4;
+    overflow: hidden;
+    margin-bottom: 10px;
+
+  }
+  .dynamicImg{
+    width: 3.51rem;
+    height: 1.97rem;
+  }
+  .dynamicP{
+    font-size: 16px;
+    color:#757575;
+    line-height: 25px;
+  }
+}

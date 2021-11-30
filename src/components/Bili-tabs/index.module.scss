@@ -1,0 +1,26 @@
+.Box{
+  position: fixed;
+  top:100px;
+  width: 100%;
+  border-bottom:1px solid #f6f6f6;
+  .tabBox {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+
+    .tabBody {
+    font-size: 15px;
+
+    }
+  }
+
+  .tabLine {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    width: 10px;
+    color: #fb7299;
+    background: #fb7299;
+  }
+
+}

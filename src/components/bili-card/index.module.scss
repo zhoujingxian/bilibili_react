@@ -1,0 +1,26 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  padding:0.14rem 0.12rem;
+  .cardLeft {
+    display: flex;
+    .cardImg {
+      border-radius: 50%;
+      margin-right:0.07rem
+    }
+
+    .cardName {
+        div{
+          font-size: 0.15rem;
+          color:#212121;
+        }
+      p{
+        color:#999;
+      }
+    }
+  }
+
+  .cardRight {
+
+  }
+}
