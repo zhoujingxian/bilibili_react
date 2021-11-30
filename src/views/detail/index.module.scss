@@ -1,3 +1,23 @@
 .detail {
-  margin-top:0.44rem
+  height: 1000px;
+  .videoDetail{
+    width: 100%;
+    position: fixed;
+    top:0.44rem;
+    z-index: 3;
+  }
+  .btnBox {
+    margin-top:2.55rem;
+    display: flex;
+    justify-content: center;
+    .btnDetail {
+      --text-color: #fff;
+      --background-color: #fb7299;
+      --border-radius: 0.18rem;
+      width: 90%;
+      height: 0.36rem;
+      margin: 0.1rem 0;
+      font-size: 0.15rem;
+    }
+  }
 }
