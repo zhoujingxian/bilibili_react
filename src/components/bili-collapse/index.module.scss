@@ -11,13 +11,22 @@
       font-weight: normal;
       font-size: 0.16rem;
       color: #212121;
-      white-space: nowrap;
+
       overflow: hidden;
       text-overflow: ellipsis;
       margin-left: 0.06rem;
+      white-space:nowrap;
     }
     .btnCollapse{
       font-weight: bold;
+    }
+  }
+  .collContent{
+    height:0;
+    overflow: hidden;
+    transition: height 0.1s;
+    .collContChild{
+      padding: 0.1rem 0;
     }
   }
 
@@ -69,3 +78,4 @@
     }
   }
 }
+

@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './index.module.scss'
 import {withRouter} from "react-router-dom";
 import BiliGrid from "../../components/bili-grid";
-import BiliVideo from "../../components/bili-videoTitle";
+import BiliVideoTitle from "../../components/bili-videoTitle";
 import Count from "../../utils/count";
 
 class Cell extends React.Component {
@@ -11,7 +11,6 @@ class Cell extends React.Component {
         prev: true,
         recData: []
     }
-
 
     render() {
         let prev1, topData, bottomData, recData;
@@ -30,9 +29,9 @@ class Cell extends React.Component {
                         <BiliGrid moreTitle={'排行榜'} moreIcon={true} moreUrl={'/rank'} moreStyle={{color: "#ffa726"}}>
                             {
                                 recData[0].data.map((value, index) => (
-                                    <BiliVideo key={index} title={value.title} src={value.cover} viewCounts={Count(value.viewCounts)}
+                                    <BiliVideoTitle key={value.id} title={value.title} src={value.cover} viewCounts={Count(value.viewCounts)}
                                                comment={Count(value.comment)}
-                                               url={'/detail'}/>
+                                               url={{pathname:`/detail/${value.id}`,state:{det:value.det}}}/>
                                 ))
                             }
                         </BiliGrid>
@@ -41,8 +40,8 @@ class Cell extends React.Component {
                                     value.name !== '推荐' && <BiliGrid key={index} title={value.name} moreUrl={value.path}>
                                         {
                                             recData[index].data.map((value, index) => (
-                                                <BiliVideo key={index} title={value.title} src={value.cover} viewCounts={Count(value.viewCounts)}
-                                                           comment={Count(value.comment)} url={'/detail'}/>
+                                                <BiliVideoTitle key={index} title={value.title} src={value.cover} viewCounts={Count(value.viewCounts)}
+                                                           comment={Count(value.comment)} url={{pathname:`/detail/${value.id}`,state:{det:value.det}}}/>
                                             ))
                                         }
                                     </BiliGrid>
@@ -55,9 +54,9 @@ class Cell extends React.Component {
                         <BiliGrid>
                             {
                                 topData.map((value, index) => (
-                                    <BiliVideo key={index} title={value.title} src={value.cover} viewCounts={Count(value.viewCounts)}
+                                    <BiliVideoTitle key={index} title={value.title} src={value.cover} viewCounts={Count(value.viewCounts)}
                                                comment={Count(value.comment)}
-                                               url={'/detail'}/>
+                                               url={{pathname:`/detail/${value.id}`,state:{det:value.det}}}/>
                                 ))
                             }
                         </BiliGrid>
@@ -65,9 +64,9 @@ class Cell extends React.Component {
                             <BiliGrid title={'最新视频'}>
                                 {
                                     bottomData.map((value, index) => (
-                                        <BiliVideo key={index} title={value.title} src={value.cover} viewCounts={Count(value.viewCounts)}
+                                        <BiliVideoTitle key={index} title={value.title} src={value.cover} viewCounts={Count(value.viewCounts)}
                                                    comment={Count(value.comment)}
-                                                   url={'/detail'}/>
+                                                   url={{pathname:`/detail/${value.id}`,state:{det:value.det}}}/>
                                     ))
                                 }
                             </BiliGrid>

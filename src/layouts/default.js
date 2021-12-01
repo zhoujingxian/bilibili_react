@@ -11,11 +11,8 @@ export default class Default extends React.Component {
 
 
     render() {
-        console.log('home')
         return (<div>
-            {/*<BiliVideo src={"/video/1-1.mp4"}/>*/}
             <Header/>
-            {/*<Home/>*/}
             <Switch>
                 <Route exact path={'/'} component={Home}/>
                 <Route exact path={'/home'} component={Home}/>

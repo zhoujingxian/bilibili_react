@@ -15,7 +15,7 @@ export default class Video extends React.Component{
         src:propTypes.string,
         viewCounts: propTypes.string,
         comment:propTypes.string,
-        url:propTypes.string
+        url:propTypes.object
     }
     /*
     * title: 视频的标题
@@ -27,7 +27,7 @@ export default class Video extends React.Component{
     render(){
         const {title,src,viewCounts,comment,url} = this.props;
         return (<div className={styles.videoBox}>
-            <NavLink to={url}>
+            <NavLink to={{pathname:url.pathname,state:url.state}}>
                 <div className={styles.imgBox}>
                     <img src={src} alt=""/>
                     <div className={styles.videoTitle}>

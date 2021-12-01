@@ -17,7 +17,7 @@ class HomePage extends React.Component {
     state = {
         loading: true,
         homeData: [],
-        url: '/abc',
+        url: '/detail',
         channelList: {
             "1": [{path: '/channel/1', name: '推荐'}, {path: '/channel/1/2', name: 'MAD·AMV'}, {path: '/channel/1/3', name: 'MMD·3D'}, {
                 path: '/channel/1/4',
@@ -72,7 +72,7 @@ class HomePage extends React.Component {
         })
     }
     async componentDidMount() {
-        this.props.history.listen(async location => {
+        this.listen = this.props.history.listen(async location => {
             this.setState({loading: true})
             const route = location.pathname
             if (route === '/' || route === '/home') {
@@ -98,6 +98,7 @@ class HomePage extends React.Component {
 
     componentWillUnmount() {
         pubsub.unsubscribe('update_loading');  //取消指定订阅
+        this.listen()
     }
 
 
@@ -118,10 +119,8 @@ class HomePage extends React.Component {
                         {
                             this.state.homeData.map((value, index) => (
                                     <Video key={value.id} title={value.title} src={value.cover} viewCounts={Count(value.viewCounts)} comment={Count(value.comment)}
-                                           url={this.state.url}/>
-                                )
-                            )
-
+                                           url={`${this.state.url}/${value.id}`}/>
+                                ))
                         }
                         <Footer/>
                     </div>

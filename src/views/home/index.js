@@ -6,7 +6,7 @@ import HomePage from "../homePage";
 
 class Home extends React.Component {
     state = {
-        tabs: [{path: '/home', name: '首页'}, {path: '/channel/1', name: '动画'}, {path: '/channel/2', name: '番剧'}, {
+        tabs: [{path: '/', name: '首页'}, {path: '/channel/1', name: '动画'}, {path: '/channel/2', name: '番剧'}, {
             path: '/channel/3', name: '国创'
         }, {path: '/channel/4', name: '音乐'}, {path: '/channel/5', name: '舞蹈'}, {path: '/channel/6', name: '游戏'}, {
             path: '/channel/7',

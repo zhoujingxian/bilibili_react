@@ -7,17 +7,18 @@ const homeData = (count) => {
     for (let i = 0; i < count; i++) {
         data.push({
             id: 1000 + i,
-            title: '@ctitle(10,40)',
+            title: '@ctitle(10,30)',
             time: '@integer(1310505744645,1610505744645)',
             viewCounts: '@integer(0,9999999)', //播放量
             comment: '@integer(0,99999)',//评论
-            cover: "/images/img" + "@integer(0,2)" + ".jpg",
+            cover: "/images/home.jpg",
             detail: {
                 fans: '@integer(0,9999999)', //粉丝
                 barrage: '@integer(0,9999999)', //弹幕
                 like: '@integer(0,9999999)',//点赞
+                collect:'@integer(0,999999)',//收藏
                 auth: "@cname()",
-                content: "@ctitle(14,24)",
+                content: "@ctitle(50,100)",
                 auth_icon: mr.image(50 * 50, mr.color(), mr.word(1))
             }
         })
@@ -49,6 +50,7 @@ const recData = (count) => {
                 fans: '@integer(0,9999999)', //粉丝
                 barrage: '@integer(0,9999999)', //弹幕
                 like: '@integer(0,9999999)',//点赞
+                collect:'@integer(0,9999999)',//收藏
                 auth: "@cname()",
                 content: "@ctitle(14,24)",
                 auth_icon: mr.image(50 * 50, mr.color(), mr.word(1))
@@ -71,6 +73,7 @@ const listData = (count) => {
                 fans: '@integer(0,9999999)', //粉丝
                 barrage: '@integer(0,9999999)', //弹幕
                 like: '@integer(0,9999999)',//点赞
+                collect:'@integer(0,9999999)',//收藏
                 auth: "@cname()",
                 content: "@ctitle(14,24)",
                 auth_icon: mr.image(50 * 50, mr.color(), mr.word(1))
@@ -90,5 +93,6 @@ module.exports = Mock.mock({
     6:recData(40),
     7:recData(40),
     8:recData(28),
-    listData:listData(50)
+    listData:listData(50),
+    detail:homeData(50)
 })

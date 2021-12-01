@@ -22,10 +22,9 @@ request.interceptors.response.use(async (response) => {
         504: '网关超时。',
     };
     console.log("响应拦截 ", codeMaps[response.status])
-    // if()
-    pubsub.publish('up_loading', false)
+
+    pubsub.publish('detail_loading', false)
     pubsub.publish('update_loading', false)
-    pubsub.publish("cell_loading",false)
     return response;
 })
 
