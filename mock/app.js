@@ -2,7 +2,6 @@ const jsonServer = require('json-server')
 const Path = require("path")
 const db = require("./db")
 const axios = require('axios')
-const request = require('umi-request')
 
 const TIME = 1000;
 const MOCK = '/api'
@@ -44,9 +43,7 @@ server.post(`${MOCK}/channel/:id`, (req, res) => {
         let count = 1;
         d.forEach((value, index) => {
             value.cover = `/images/${req.params.id}-${count}.jpg`;
-            value.video = `/video/${req.params.id}-${count}.flv`;
             value.det =`${req.params.id}-${count}`;
-            // console.log(`${req.params.id}-${count}`)
             ((index + 1) % 4 === 0) && count++;
         })
         body.forEach((value, index) => {
@@ -87,10 +84,12 @@ server.get(`${MOCK}/detail/:id`, (req, res) => {
     const det = req.query[0]
     console.log(det)
     axios({
-        url: `http://localhost:3101/api/detail`
+        url: `http://localhost:3101/api/detail`,
+        method:'get'
     }).then(data => {
             const d = data.data.data[Math.round(Math.random() * 50)];
             d.video = `/video/${det}.mp4`
+        console.log(d)
             res.jsonp({
                 err:0,
                 data: d

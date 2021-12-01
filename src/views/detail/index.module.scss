@@ -1,14 +1,16 @@
 .detail {
-  .videoDetail{
+  .videoDetail {
     width: 100%;
     position: fixed;
-    top:0.44rem;
+    top: 0.44rem;
     z-index: 3;
   }
+
   .btnBox {
-    margin-top:2.55rem;
+    margin-top: 2.55rem;
     display: flex;
     justify-content: center;
+
     .btnDetail {
       --text-color: #fff;
       --background-color: #fb7299;
@@ -17,6 +19,35 @@
       height: 0.36rem;
       margin: 0.1rem 0;
       font-size: 0.15rem;
+    }
+  }
+
+  .detailContent {
+    color: #999;
+
+    .detailData {
+      margin: 0.05rem 0;
+
+      span {
+        margin-right: 0.08rem;
+      }
+    }
+
+    .ban {
+      margin-bottom: 0.05rem;
+
+      i {
+        color: #fb7299;
+        font-size: 12px;
+        margin-right: 0.04rem
+      }
+    }
+  }
+
+  .detailTabs {
+
+    p {
+      font-size: 0.14rem;
     }
   }
 }

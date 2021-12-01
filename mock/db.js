@@ -6,12 +6,13 @@ const homeData = (count) => {
     let data = []
     for (let i = 0; i < count; i++) {
         data.push({
-            id: 1000 + i,
+            id: "@integer(0,9999999)",
             title: '@ctitle(10,30)',
             time: '@integer(1310505744645,1610505744645)',
             viewCounts: '@integer(0,9999999)', //播放量
             comment: '@integer(0,99999)',//评论
             cover: "/images/home.jpg",
+            det:"home",
             detail: {
                 fans: '@integer(0,9999999)', //粉丝
                 barrage: '@integer(0,9999999)', //弹幕
@@ -46,6 +47,7 @@ const recData = (count) => {
             viewCounts: '@integer(0,9999999)', //播放量
             comment: '@integer(0,99999)',//评论
             // cover: "/images/img" + "@integer(0,2)" + ".jpg",
+            det:'home',
             detail: {
                 fans: '@integer(0,9999999)', //粉丝
                 barrage: '@integer(0,9999999)', //弹幕

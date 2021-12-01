@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1092149",
+      "name": "禁止",
+      "font_class": "jinzhi",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "12661309",
+      "name": "禁止",
+      "font_class": "jinzhi1",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
       "icon_id": "1127368",
       "name": "收藏",
       "font_class": "star",

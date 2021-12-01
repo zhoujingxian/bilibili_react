@@ -5,20 +5,24 @@ import styles from './index.module.scss'
 export default class End extends React.Component {
     static defaultProps = {
         username: '-----',
-        time: "--------",
-        fans:null
+        time: null,
+        fans:null,
+        src:"https://dummyimage.com/40x40/1890ff&text=1",
+        imgStyle:null
     }
     static propTypes = {
         username: propTypes.string,
         time: propTypes.string,
-        fans:propTypes.number
+        fans:propTypes.string,
+        src:propTypes.string,
+        imgStyle:propTypes.object
     }
 
     render() {
-        const {username, time,fans} = this.props
+        const {username, time,fans,src,imgStyle} = this.props
         return (<div className={styles.card}>
             <div className={styles.cardLeft}>
-                <img src="https://dummyimage.com/40x40/1890ff&text=1" alt="" className={styles.cardImg}/>
+                <img src={src} alt="" className={styles.cardImg} style={imgStyle}/>
                 <div className={styles.cardName}>
                     <div>{username}</div>
                     {

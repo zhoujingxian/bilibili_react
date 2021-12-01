@@ -38,7 +38,7 @@ function BiliCollapse(props) {
                         <b>{auth}</b>
                     </div>
                     <div className={styles.collBottom}>
-                        <span>{Count(viewCounts)}</span>
+                        <span>{Count(viewCounts)}观看</span>
                         <span><i className={`iconfont`}>&#xec8c;</i>{Count(like)}</span>
                         <span><i className={`iconfont`}>&#xe608;</i>{Count(collect)}</span>
                     </div>

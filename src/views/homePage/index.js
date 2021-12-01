@@ -5,7 +5,7 @@ import pubsub from 'pubsub-js'
 import BiliLoading from "../../components/bili-loading";
 import {queryHome, queryRec, queryCell} from '../../api/news'
 
-import Video from '../../components/bili-videoTitle'
+import BiliVideoTitle from '../../components/bili-videoTitle'
 import Count from '../../utils/count'
 import {Tabs} from "antd-mobile";
 import {NavLink, withRouter} from "react-router-dom";
@@ -62,7 +62,7 @@ class HomePage extends React.Component {
             }, {path: '/channel/8/5', name: '工业·工程·机械'}, {path: '/channel/8/6', name: '极客DIY'}],
         },
         recData: [],
-        prev:false
+        prev: false
     }
 
     constructor(props) {
@@ -71,18 +71,21 @@ class HomePage extends React.Component {
             this.setState({loading: bl})
         })
     }
+
     async componentDidMount() {
         this.listen = this.props.history.listen(async location => {
             this.setState({loading: true})
             const route = location.pathname
             if (route === '/' || route === '/home') {
                 data = await queryHome()
+                this.setState({homeData: data.data})
             } else if (route.length === 10) {
                 data = await queryRec(route, this.state.channelList[route.split('/')[2]])
-            } else if(route.length === 12){
+                this.setState({homeData: data.data})
+            } else if (route.length === 12) {
                 data = await queryCell(route)
+                this.setState({homeData: data.data})
             }
-            this.setState({homeData: data.data})
         })
         const route = this.props.location.pathname;
         let data;
@@ -90,7 +93,8 @@ class HomePage extends React.Component {
             data = await queryHome()
         } else if (route.length === 10) {
             data = await queryRec(route, this.state.channelList[route.split('/')[2]])
-        } else {
+
+        } else if (route.length === 12) {
             data = await queryCell(route)
         }
         this.setState({homeData: data.data})
@@ -118,9 +122,10 @@ class HomePage extends React.Component {
                     prev && !this.state.loading && <div className={styles.homePageBox}>
                         {
                             this.state.homeData.map((value, index) => (
-                                    <Video key={value.id} title={value.title} src={value.cover} viewCounts={Count(value.viewCounts)} comment={Count(value.comment)}
-                                           url={`${this.state.url}/${value.id}`}/>
-                                ))
+                                <BiliVideoTitle key={value.id} title={value.title} src={value.cover} viewCounts={Count(value.viewCounts)}
+                                                comment={Count(value.comment)}
+                                                url={{pathname: `/detail/${value.id}`, state: {det:value.det}}}/>
+                            ))
                         }
                         <Footer/>
                     </div>
@@ -136,7 +141,7 @@ class HomePage extends React.Component {
                             }
                         </Tabs>
                         {
-                            !this.state.loading&&<div>
+                            !this.state.loading && <div>
                                 <Cell recList={this.state.channelList} recData={this.state.homeData}/>
                                 <Footer/>
                             </div>

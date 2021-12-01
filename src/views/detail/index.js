@@ -2,14 +2,17 @@ import React from 'react'
 
 import styles from './index.module.scss'
 
-import {Button} from 'antd-mobile'
+import {Button, Tabs} from 'antd-mobile'
 
 import BiliVideo from "../../components/bili-video";
-// import BiliDetailTitle from '../../components/bili-detailTitle'
 import BiliCollapse from "../../components/bili-collapse";
 import {queryDetail} from '../../api/news'
 import BiliLoading from "../../components/bili-loading";
 import pubsub from "pubsub-js";
+import Count from '../../utils/count'
+import {month} from '../../utils/date'
+// import BiliDynamic from '../../components/bili-dynamic'
+import BiliCard from '../../components/bili-card'
 
 export default class Detail extends React.Component {
     state = {
@@ -27,7 +30,6 @@ export default class Detail extends React.Component {
     async componentDidMount() {
         const data = await queryDetail(this.props.location.pathname, this.props.location.state.det)
         this.setState({detailData: data.data})
-        this.setState({loading: false})
     }
 
     componentWillUnmount() {
@@ -54,8 +56,28 @@ export default class Detail extends React.Component {
                             viewCounts={viewCounts}
                             time={time}
                         >
-                            <div>{detail.content}</div>
+                            <div className={styles.detailContent}>
+                                <BiliCard username={detail.auth} src={detail.auth_icon} fans={Count(detail.fans)}
+                                          imgStyle={{width: "0.36rem", height: "0.36rem"}}/>
+                                <div className={styles.detailData}>
+                                    <span>{Count(viewCounts)}观看</span>
+                                    <span>{Count(detail.barrage)}弹幕</span>
+                                    <span>{month(time)}</span>
+                                </div>
+                                <p className={styles.ban}><i className={`iconfont`}>&#xe666;</i>未经作者授权禁止转载</p>
+                                <div>{detail.content}</div>
+                            </div>
                         </BiliCollapse>
+                    </div>
+                    <div>
+                        <Tabs className={styles.detailTabs}>
+                            <Tabs.Tab title={<p>相关推荐</p>} key='fruits' style={{height: '0.32rem'}}>
+                                asdf
+                            </Tabs.Tab>
+                            <Tabs.Tab title={<p>评论{Count(comment)}</p>} key='vegetables' style={{height: '0.32rem'}}>
+                                评论
+                            </Tabs.Tab>
+                        </Tabs>
                     </div>
                 </div>
                 }

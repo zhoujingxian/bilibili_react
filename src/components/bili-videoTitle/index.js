@@ -26,6 +26,7 @@ export default class Video extends React.Component{
     * **/
     render(){
         const {title,src,viewCounts,comment,url} = this.props;
+
         return (<div className={styles.videoBox}>
             <NavLink to={{pathname:url.pathname,state:url.state}}>
                 <div className={styles.imgBox}>

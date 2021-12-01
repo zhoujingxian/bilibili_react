@@ -7,8 +7,8 @@ export default class Dynamic extends React.Component {
     static defaultProps = {
         name:"---",
         src:'/images/img.png',
-        text:'----------------------------------------------------------------------------------',
-        title:"--------------------------------------------"
+        text:null,
+        title:null
     }
 
     static propTypes = {
