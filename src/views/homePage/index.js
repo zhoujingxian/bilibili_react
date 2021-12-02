@@ -1,16 +1,16 @@
 import React from 'react'
+import pubsub from 'pubsub-js'
+import {Tabs, Button} from "antd-mobile";
 
 import styles from './index.module.scss'
-import pubsub from 'pubsub-js'
 import BiliLoading from "../../components/bili-loading";
 import {queryHome, queryRec, queryCell} from '../../api/news'
-
 import BiliVideoTitle from '../../components/bili-videoTitle'
 import Count from '../../utils/count'
-import {Tabs} from "antd-mobile";
 import {NavLink, withRouter} from "react-router-dom";
 import Cell from "../Cell";
 import Footer from '../../components/footer'
+import store from '../../plugins/redux'
 
 
 class HomePage extends React.Component {
@@ -61,7 +61,6 @@ class HomePage extends React.Component {
                 name: '计算机技术'
             }, {path: '/channel/8/5', name: '工业·工程·机械'}, {path: '/channel/8/6', name: '极客DIY'}],
         },
-        recData: [],
         prev: false
     }
 
@@ -78,14 +77,18 @@ class HomePage extends React.Component {
             const route = location.pathname
             if (route === '/' || route === '/home') {
                 data = await queryHome()
-                this.setState({homeData: data.data})
             } else if (route.length === 10) {
                 data = await queryRec(route, this.state.channelList[route.split('/')[2]])
-                this.setState({homeData: data.data})
             } else if (route.length === 12) {
                 data = await queryCell(route)
-                this.setState({homeData: data.data})
+            } else if (/detail/.test(route)) {
+                let d = [];
+                this.state.homeData.length < 20 ? this.state.homeData.forEach(value => {
+                    d = [...d, ...value.data]
+                }) : d = this.state.homeData.slice(0, 20)
+                store.dispatch({type: 'recommendData', payload: d})
             }
+            this.setState({homeData: data.data})
         })
         const route = this.props.location.pathname;
         let data;
@@ -124,9 +127,12 @@ class HomePage extends React.Component {
                             this.state.homeData.map((value, index) => (
                                 <BiliVideoTitle key={value.id} title={value.title} src={value.cover} viewCounts={Count(value.viewCounts)}
                                                 comment={Count(value.comment)}
-                                                url={{pathname: `/detail/${value.id}`, state: {det:value.det}}}/>
+                                                url={{pathname: `/detail/${value.id}`, state: {det: value.det}}}/>
                             ))
                         }
+                        <div className={styles.homeOpenBox}>
+                            <Button className={styles.homeOpen}>打开App，看你感兴趣的视频</Button>
+                        </div>
                         <Footer/>
                     </div>
                 }

@@ -1,27 +1,29 @@
 import React from 'react'
-
-import styles from './index.module.scss'
-
+import pubsub from "pubsub-js";
 import {Button, Tabs} from 'antd-mobile'
 
-import BiliVideo from "../../components/bili-video";
+import styles from './index.module.scss'
 import BiliCollapse from "../../components/bili-collapse";
 import {queryDetail} from '../../api/news'
-import BiliLoading from "../../components/bili-loading";
-import pubsub from "pubsub-js";
 import Count from '../../utils/count'
 import {month} from '../../utils/date'
-// import BiliDynamic from '../../components/bili-dynamic'
+import BiliLoading from "../../components/bili-loading";
+import BiliVideo from "../../components/bili-video";
 import BiliCard from '../../components/bili-card'
+import store from '../../plugins/redux'
+import BiliVideoTitle from "../../components/bili-videoTitle";
+import Footer from '../../components/footer'
+
 
 export default class Detail extends React.Component {
     state = {
         loading: true,
-        detailData: {}
+        detailData: {},
+        recommendData: store.getState().recommendData
     }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props)
         pubsub.subscribe('detail_loading', (msg, bl) => {
             this.setState({loading: bl})
         })
@@ -37,7 +39,9 @@ export default class Detail extends React.Component {
     }
 
     render() {
-        const {title, comment, detail, viewCounts, time, video} = this.state.detailData
+        const {title, comment, detail, viewCounts, time, video} = this.state.detailData;
+        const recommentData = this.state.recommendData
+
         return (
             <div className={styles.detail}>
                 <BiliLoading spinning={this.state.loading} delay={100}/>
@@ -57,8 +61,11 @@ export default class Detail extends React.Component {
                             time={time}
                         >
                             <div className={styles.detailContent}>
-                                <BiliCard username={detail.auth} src={detail.auth_icon} fans={Count(detail.fans)}
-                                          imgStyle={{width: "0.36rem", height: "0.36rem"}}/>
+                                <div style={{display:"flex",justifyContent:"space-between",alignItems:'center'}}>
+                                    <BiliCard username={detail.auth} src={detail.auth_icon} fans={Count(detail.fans)}
+                                              imgStyle={{width: "0.36rem", height: "0.36rem"}}/>
+                                    <Button className={styles.btnFocus}>+ 关注</Button>
+                                </div>
                                 <div className={styles.detailData}>
                                     <span>{Count(viewCounts)}观看</span>
                                     <span>{Count(detail.barrage)}弹幕</span>
@@ -72,12 +79,25 @@ export default class Detail extends React.Component {
                     <div>
                         <Tabs className={styles.detailTabs}>
                             <Tabs.Tab title={<p>相关推荐</p>} key='fruits' style={{height: '0.32rem'}}>
-                                asdf
+                                <div className={styles.detailTabsBox}>
+                                    {
+                                        recommentData.map((value, index) => (
+                                            <BiliVideoTitle key={value.id} title={value.title} src={value.cover} viewCounts={Count(value.viewCounts)}
+                                                            comment={Count(value.comment)}
+                                                            url={{pathname: `/detail/${value.id}`, state: {det: value.det}}}/>
+                                        ))
+                                    }
+                                </div>
+
                             </Tabs.Tab>
                             <Tabs.Tab title={<p>评论{Count(comment)}</p>} key='vegetables' style={{height: '0.32rem'}}>
                                 评论
                             </Tabs.Tab>
                         </Tabs>
+                        <div className={styles.btnMoreBox}>
+                            <Button className={styles.btnMore}>还看不够？App内尽情探索吧></Button>
+                        </div>
+                        <Footer/>
                     </div>
                 </div>
                 }

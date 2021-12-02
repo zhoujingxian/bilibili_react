@@ -5,8 +5,9 @@ import Header from '../components/header'
 import Home from '../views/home'
 import User from '../views/user'
 import Detail from '../views/detail'
+import '../plugins/redux'
 
-// import BiliVideo from '../components/bili-video'
+
 export default class Default extends React.Component {
 
 

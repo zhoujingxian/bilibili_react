@@ -32,6 +32,13 @@
         margin-right: 0.08rem;
       }
     }
+    .btnFocus{
+      border: 1px solid #fb7299;
+      font-size: 0.13rem;
+      padding:0.02rem 0.07rem;
+      color:#fb7299;
+      height:0.24rem;
+    }
 
     .ban {
       margin-bottom: 0.05rem;
@@ -45,9 +52,40 @@
   }
 
   .detailTabs {
+    width:100%;
+    .detailTabsBox{
+      padding:0 0.05rem;
+      display: flex;
+      justify-content: left;
+      flex-wrap: wrap;
+    }
+    &>div:nth-of-type(1){
+      border-bottom: none;
+      &>div:nth-of-type(3){
+       &>div>div{
+         height:0.32rem;
+       }
+      }
+    }
+    &>div:nth-of-type(2){
+      padding:0;
+    }
 
     p {
       font-size: 0.14rem;
+    }
+  }
+  .btnMoreBox{
+    display: flex;
+    justify-content: center;
+    .btnMore {
+      --text-color: #333;
+      --background-color: #f4f4f4;
+      --border-radius: 0.18rem;
+      width: 90%;
+      height: 0.36rem;
+      margin: 0.1rem 0;
+      font-size: 0.15rem;
     }
   }
 }
