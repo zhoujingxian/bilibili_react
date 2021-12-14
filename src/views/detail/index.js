@@ -19,13 +19,16 @@ export default class Detail extends React.Component {
     state = {
         loading: true,
         detailData: {},
-        recommendData: store.getState().recommendData
+        recommendData: store.getState().detailRec
     }
 
     constructor(props) {
         super(props)
         pubsub.subscribe('detail_loading', (msg, bl) => {
             this.setState({loading: bl})
+        })
+        store.subscribe(()=>{
+            this.setState({recommendData:store.getState().recommendData})
         })
     }
 
@@ -41,7 +44,6 @@ export default class Detail extends React.Component {
     render() {
         const {title, comment, detail, viewCounts, time, video} = this.state.detailData;
         const recommentData = this.state.recommendData
-
         return (
             <div className={styles.detail}>
                 <BiliLoading spinning={this.state.loading} delay={100}/>

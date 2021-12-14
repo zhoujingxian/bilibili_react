@@ -19,6 +19,7 @@ class Home extends React.Component {
         this.setState({visible: val})
     }
 
+
     render() {
         return (
             <div>

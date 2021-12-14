@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './index.module.scss'
 import {NavLink} from 'react-router-dom'
 import propTypes from 'prop-types'
+import {Image} from 'antd-mobile'
 export default class Video extends React.Component{
     static defaultProp = {
         title:'视频标题',
@@ -30,7 +31,8 @@ export default class Video extends React.Component{
         return (<div className={styles.videoBox}>
             <NavLink to={{pathname:url.pathname,state:url.state}}>
                 <div className={styles.imgBox}>
-                    <img src={src} alt=""/>
+                    {/*<img src={src} alt=""/>*/}
+                    <Image src={src} width={"1.72rem"} height={"1.01rem"}/>
                     <div className={styles.videoTitle}>
                         <span><i className={'iconfont'}>&#xe6a9;</i>{viewCounts}</span>
                         <span><i className={'iconfont'}>&#xe665;</i>{comment}</span>

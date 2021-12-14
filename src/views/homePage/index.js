@@ -12,6 +12,11 @@ import Cell from "../Cell";
 import Footer from '../../components/footer'
 import store from '../../plugins/redux'
 
+import {actionDetailRec} from '../../store/creator/detailRec'
+// import {actionHome} from '../../store/creator/home'
+// import {actionRec} from '../../store/creator/rec'
+import _ from 'lodash';
+
 
 class HomePage extends React.Component {
     state = {
@@ -72,13 +77,16 @@ class HomePage extends React.Component {
     }
 
     async componentDidMount() {
+
         this.listen = this.props.history.listen(async location => {
             this.setState({loading: true})
             const route = location.pathname
             if (route === '/' || route === '/home') {
                 data = await queryHome()
+                // store.dispatch(actionHome())
             } else if (route.length === 10) {
                 data = await queryRec(route, this.state.channelList[route.split('/')[2]])
+                // store.dispatch(actionRec(route, this.state.channelList[route.split('/')[2]]))
             } else if (route.length === 12) {
                 data = await queryCell(route)
             } else if (/detail/.test(route)) {
@@ -86,7 +94,7 @@ class HomePage extends React.Component {
                 this.state.homeData.length < 20 ? this.state.homeData.forEach(value => {
                     d = [...d, ...value.data]
                 }) : d = this.state.homeData.slice(0, 20)
-                store.dispatch({type: 'recommendData', payload: d})
+                store.dispatch(actionDetailRec(d))
             }
             this.setState({homeData: data.data})
         })
@@ -96,7 +104,6 @@ class HomePage extends React.Component {
             data = await queryHome()
         } else if (route.length === 10) {
             data = await queryRec(route, this.state.channelList[route.split('/')[2]])
-
         } else if (route.length === 12) {
             data = await queryCell(route)
         }

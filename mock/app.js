@@ -82,14 +82,12 @@ server.post(`${MOCK}/channel/:id/:num`, (req, res) => {
 })
 server.get(`${MOCK}/detail/:id`, (req, res) => {
     const det = req.query[0]
-    console.log(det)
     axios({
         url: `http://localhost:3101/api/detail`,
         method:'get'
     }).then(data => {
             const d = data.data.data[Math.round(Math.random() * 50)];
             d.video = `/video/${det}.mp4`
-        console.log(d)
             res.jsonp({
                 err:0,
                 data: d

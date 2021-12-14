@@ -2,7 +2,6 @@ import request from 'umi-request'
 import React from 'react'
 import pubsub from 'pubsub-js'
 
-
 request.interceptors.response.use(async (response) => {
     const codeMaps = {
         200: '服务器成功返回请求的数据。',
@@ -21,11 +20,12 @@ request.interceptors.response.use(async (response) => {
         503: '服务不可用，服务器暂时过载或维护。',
         504: '网关超时。',
     };
-    console.log("响应拦截 ", codeMaps[response.status])
+        console.log("响应拦截 ", codeMaps[response.status])
 
-    pubsub.publish('detail_loading', false)
-    pubsub.publish('update_loading', false)
-    return response;
+        pubsub.publish('detail_loading', false)
+        pubsub.publish('update_loading', false)
+        return response;
+
 })
 
 React.request = request;
